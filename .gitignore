@@ -136,3 +136,8 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+# Jekyll
+.jekyll-cache/
+_site/
+vendor/
