@@ -143,4 +143,4 @@ _site/
 vendor/
 
 # System
-.DS_Store/
+.DS_Store
