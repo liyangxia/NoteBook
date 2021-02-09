@@ -32,27 +32,27 @@ git push -u origin main
 
 对于之前已经提交过，而且是master的分支，可以进行修改
 
-*Setup1*: 修改默认master分支的名字为main
+**Setup1**: 修改默认master分支的名字为main
 
 ```bash
 git branch -m master main
 ```
 
-*Setup2*: 修改分支引用HEAD到main
+**Setup2**: 修改分支引用HEAD到main
 
 ```bash
 git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
 ```
 
-*Setup3*: push新的main分支
+**Setup3**: push新的main分支
 
 ```bash
 git push origin main
 ```
 
-*Setup4*: Github repository setting 页面修改默认分支到main
+**Setup4**: Github repository setting 页面修改默认分支到main
 
-*Setup5*: 删除远端的master分支
+**Setup5**: 删除远端的master分支
 
 ```bash
 git push —delete origin master
