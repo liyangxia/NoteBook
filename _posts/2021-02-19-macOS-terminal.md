@@ -19,18 +19,6 @@ title: macOS Terminal 调优
 
 我认为理想的工作环境应该是简洁的，只关注最重要的事物，而这类的插件给我的感觉非常臃肿，我可能只需要一个小小的功能，但是它给我一堆附加功能，想想你只是需要削苹果，有必要买瑞士军刀吗？如果一个产品提供的内容有一半都是用不到的，那么除去可用的内容外都是浪费。
 
-## 让Terminal变得好看点
-
-基于此我开始对系统自带的Terminal进行调优，首先是视觉部分
-
-![Terminal-main](/_posts/images/terminal_main.png)
-
-每次打开后什么都没有（当然几乎也没关过），只有一个用颜色区分普通用户和root用户的标识，普通用户用的是粗体绿色，root用户用的是粗体红色。
-
-设置内使用了[Solarized Dark](https://github.com/tomislav/osx-terminal.app-colors-solarized)色彩体系，但对默认提供的配置文件进行过改动，首先是字号使用了14号，这是一个涉及到命令执行安全的建议，因为在终端中运行程序是不具备撤销的，一旦因为输入错误造成了错误的命令执行，结果就是毁灭性的，所以调大字号方便看清命令的输入，唯一的缺点就是如果没有外接显示屏，单个Terminal程序还是挺占屏幕空间的。其次是开启粗体，并把光标调整到和Linux一样的红色Block
-
-![Terminal-setting](../_posts/images/terminal_setting.pnv)
-
 ## Zsh调整
 
 之前的macOS默认用的都是bash，到了Catalina后开始使用zsh作为默认shell，既然官方进行了调整就说明zsh有使用的良好价值，我也开始学习和了解这个shell
