@@ -148,3 +148,4 @@ vendor/
 # Rvm
 .ruby-version
 .ruby-gemset
+.sass-cache/
