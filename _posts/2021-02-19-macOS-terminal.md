@@ -100,6 +100,8 @@ export CPPFLAGS="-I/usr/local/opt/openjdk/include"
 
 在使用macOS的时候，几乎没有切换到root账号的需求，所以没有对切换用户进行识别，在Linux环境中我会尝试识别当前用户，并切换到对应用户的工作环境
 
+![zsh](/assets/images/001.png)
+
 ## Python和Ruby，我的最爱
 
 接着是基础脚本程序Python和Ruby的改造，因为用这两个语言写的程序基本都会使用第三方库，为了避免和系统默认版本和库产生冲突，使用[Pyenv](https://github.com/pyenv/pyenv)配置自定义Python版本，使用[RVM](https://rvm.io/rvm/install)配置自定义Ruby版本，详细的配置说明可以在项目官网查看，写的已经非常详细了
