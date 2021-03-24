@@ -1,5 +1,10 @@
-# 网站名称
+# 网站基础设置
 site_name: NE30104
+site_description: None
+site_author: liyangxia
+site_url: https://liyangxia.com
+edit_uri: ""
+copyright: Copyright &copy; 2020 - 2021 liyangxia.com
 
 # 网站主题
 theme:
@@ -22,7 +27,7 @@ theme:
     logo: material/bash
     repo: fontawesome/brands/github
   # 站点favicon
-  favicon: assets/images/bash.svg
+  favicon: assets/images/bash.png
   # 站点页面基础设置
   features:
     - navigation.instant
@@ -31,31 +36,24 @@ theme:
     - navigation.sections
     - navigation.expand
     - toc.integrate
-  # 站点插件
-  plugins:
-    # 开启搜索
-    - search
-    # 文章更新时间
-    - git-revision-date
-    - git-revision-date-localized
-  features:
-    # 搜索结果高亮
-    - search.highlight
-    # 标题自动隐藏
-    - header.autohide
-  extra:
+
+plugins:
+  # 文章更新时间
+  - git-revision-date
+  - git-revision-date-localized
+  
+features:
+  # 搜索结果高亮
+  - search.highlight
+  # 标题自动隐藏
+  - header.autohide
+
+extra:
   # 同城交友，非诚勿扰
   social:
-    - icon: fontawesome/brands/twitter
-      link: https://twitter.com/liyangxia
-    - icon: fontawesome/brands/github
-      link: https://github.com/liyangxia
-    - icon: fontawesome/brands/docker
-      link: https://docker.com/liyangxia
-  # GPL V3 only
-  copyright: Copyright &copy; 2020 - 2021 liyangxia
-  # Github repository
-  repo_url: https://github.com/liyangxia/NoteBook
-  repo_name: liyangxia/NoteBook
-  edit_uri: ""
-  
+  - icon: fontawesome/brands/twitter
+    link: https://twitter.com/liyangxia
+  - icon: fontawesome/brands/github
+    link: https://github.com/liyangxia
+  - icon: fontawesome/brands/docker
+    link: https://docker.com/liyangxia
