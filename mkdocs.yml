@@ -26,8 +26,6 @@ theme:
   icon:
     logo: material/bash
     repo: fontawesome/brands/github
-  # 站点favicon
-  favicon: assets/images/bash.png
   # 站点页面基础设置
   features:
     - navigation.instant
