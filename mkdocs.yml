@@ -1,4 +1,61 @@
+# 网站名称
 site_name: NE30104
 
+# 网站主题
 theme:
   name: material
+  # 色彩设置
+  palette:
+    scheme: default
+    primary: white
+    accent: green
+  # 字体设置
+  font:
+    text: Noto Sans SC
+    code: Roboto Mono
+  # 站点语言
+  language: zh
+  # 文字方向：左对齐
+  direction: ltr
+  # 站点logo
+  icon:
+    logo: material/bash
+    repo: fontawesome/brands/github
+  # 站点favicon
+  favicon: assets/images/bash.svg
+  # 站点页面基础设置
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+  # 站点插件
+  plugins:
+    # 开启搜索
+    - search
+    # 文章更新时间
+    - git-revision-date
+    - git-revision-date-localized
+  features:
+    # 搜索结果高亮
+    - search.highlight
+    # 标题自动隐藏
+    - header.autohide
+  extra:
+  # 同城交友，非诚勿扰
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/liyangxia
+    - icon: fontawesome/brands/github
+      link: https://github.com/liyangxia
+    - icon: fontawesome/brands/docker
+      link: https://docker.com/liyangxia
+  # GPL V3 only
+  copyright: Copyright &copy; 2020 - 2021 liyangxia
+  # Github repository
+  repo_url: https://github.com/liyangxia/NoteBook
+  repo_name: liyangxia/NoteBook
+  edit_uri: ""
+  
