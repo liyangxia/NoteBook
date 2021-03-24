@@ -36,17 +36,14 @@ theme:
     - navigation.sections
     - navigation.expand
     - toc.integrate
+    - search.highlight
+    - header.autohide
 
 plugins:
   # 文章更新时间
   - git-revision-date
   - git-revision-date-localized
-  
-features:
-  # 搜索结果高亮
-  - search.highlight
-  # 标题自动隐藏
-  - header.autohide
+  - macros
 
 extra:
   # 同城交友，非诚勿扰
@@ -57,3 +54,34 @@ extra:
     link: https://github.com/liyangxia
   - icon: fontawesome/brands/docker
     link: https://docker.com/liyangxia
+
+markdown_extensions:
+  - abbr
+  - meta
+  - pymdownx.snippets
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid-experimental
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - attr_list
+  - pymdownx.highlight:
+      linenums: false
+  - pymdownx.keys
+  - pymdownx.tabbed
+  - footnotes
+  - pymdownx.critic:
+      mode: view
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  - pymdownx.smartsymbols
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.arithmatex:
+      generic: true
