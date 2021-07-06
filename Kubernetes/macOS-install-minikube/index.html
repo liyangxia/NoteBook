@@ -1,0 +1,719 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="None">
+      
+      
+      
+        <meta name="author" content="liyangxia">
+      
+      
+        <link rel="canonical" href="https://liyangxia.com/Kubernetes/macOS-install-minikube/">
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.1, mkdocs-material-7.1.9">
+    
+    
+      
+        <title>macOS安装minikube以及优化排障 - NE30104</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ca7ac06f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.f1a3b89f.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#ffffff">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+SC:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Noto Sans SC";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="white" data-md-color-accent="green">
+  
+    
+    <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#macosminikube" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="NE30104" class="md-header__button md-logo" aria-label="NE30104" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9h2.31l.32-3h2l-.32 3h2l.32-3h2l-.32 3H15v2h-1.9l-.2 2H15v2h-2.31l-.32 3h-2l.32-3h-2l-.32 3h-2l.32-3H5v-2h1.9l.2-2H5V9m4.1 2-.2 2h2l.2-2M19 6h-2v8h2m0 2h-2v2h2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            NE30104
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              macOS安装minikube以及优化排障
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../.." class="md-tabs__link">
+      HOME
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        Kubernetes
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../Raspberry/" class="md-tabs__link">
+        Raspberry
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="NE30104" class="md-nav__button md-logo" aria-label="NE30104" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M5 9h2.31l.32-3h2l-.32 3h2l.32-3h2l-.32 3H15v2h-1.9l-.2 2H15v2h-2.31l-.32 3h-2l.32-3h-2l-.32 3h-2l.32-3H5v-2h1.9l.2-2H5V9m4.1 2-.2 2h2l.2-2M19 6h-2v8h2m0 2h-2v2h2z"/></svg>
+
+    </a>
+    NE30104
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        HOME
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" checked>
+      
+      <label class="md-nav__link" for="__nav_2">
+        Kubernetes
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Kubernetes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Kubernetes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          macOS安装minikube以及优化排障
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        macOS安装minikube以及优化排障
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#minikube" class="md-nav__link">
+    minikube简单介绍
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    前置准备
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    开始安装
+  </a>
+  
+    <nav class="md-nav" aria-label="开始安装">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kubectl" class="md-nav__link">
+    安装kubectl
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hyperkit" class="md-nav__link">
+    安装hyperkit
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#minikube_1" class="md-nav__link">
+    安装minikube
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    调整配置
+  </a>
+  
+    <nav class="md-nav" aria-label="调整配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    指定虚拟驱动
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    添加必要环境变量
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    附加选择
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    开始使用
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    结语
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" data-md-state="indeterminate" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Raspberry
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Raspberry" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Raspberry
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Raspberry/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Raspberry/pi-k3s/" class="md-nav__link">
+        Raspberry Pi 4B部署安装K3s集群
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="macosminikube">macOS安装minikube以及优化排障</h1>
+<h2 id="minikube">minikube简单介绍</h2>
+<p><a href="https://minikube.sigs.k8s.io">minikube</a>是一个轻量化的本地k8s环境，非常方便作为开发、学习使用，丰富的addons几乎可以完整模拟出生产环节需要的容器集群环境，并且安装起来也非常的方便，而且得益于hyperkit驱动，在macOS上安装minikube甚至不需要庞大的Docker Desktop作为支持，所有的组建都可以使用homebrew安装使用</p>
+<h2 id="_1">前置准备</h2>
+<ol>
+<li>良好的网络环境，默认从国外网站下载镜像</li>
+<li>良好的设备性能，minikube运行起来后还是比较占用CPU和内存的</li>
+<li><a href="https://brew.sh">Homebrew</a>包管理工具，启用<a href="https://github.com/Homebrew/homebrew-core">homebrew/core</a></li>
+</ol>
+<h2 id="_2">开始安装</h2>
+<h3 id="kubectl">安装kubectl</h3>
+<div class="highlight"><pre><span></span><code>brew install kubectl
+</code></pre></div>
+<h3 id="hyperkit">安装hyperkit</h3>
+<p>如果本地有Docker Desktop环境的话可以不用安装hyperkit，但是需要在设置里关闭**启用Kubernetes**，避免和minikube冲突</p>
+<div class="highlight"><pre><span></span><code>brew install hyperkit
+</code></pre></div>
+<h3 id="minikube_1">安装minikube</h3>
+<div class="highlight"><pre><span></span><code>brew install minikube
+</code></pre></div>
+<p>一般正确执行后安装的minikube是可用的，如果遇到找不到minikube程序的错误，可以手动设置连接</p>
+<div class="highlight"><pre><span></span><code>brew unlink minikube
+brew link minikube
+</code></pre></div>
+<h2 id="_3">调整配置</h2>
+<h3 id="_4">指定虚拟驱动</h3>
+<p>因为我的机器上只有hyperkit这一套虚拟化组件，为了指定使用hyperkit可以在启动minikube前进行调整</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 启动时指定hyperkit</span>
+minikube start --driver<span class="o">=</span>hyperkit
+
+<span class="c1"># 设置默认启动</span>
+minikube config <span class="nb">set</span> driver hyperkit
+</code></pre></div>
+<h3 id="_5">添加必要环境变量</h3>
+<p>minikube会识别到默认的代理环境变量，可以提前进行设置，方便进行拉取镜像</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 全局代理配置</span>
+<span class="nb">export</span> <span class="nv">http_proxy</span><span class="o">=</span>*****
+<span class="nb">export</span> <span class="nv">https_proxy</span><span class="o">=</span>*****
+
+<span class="c1"># Minikube 配置</span>
+<span class="nb">export</span> <span class="nv">NO_PROXY</span><span class="o">=</span>localhost,127.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24,192.168.64.0/24
+<span class="c1"># 下面这条是禁止emoji，可以体验下后给加上</span>
+<span class="nb">export</span> <span class="nv">MINIKUBE_IN_STYLE</span><span class="o">=</span><span class="nb">false</span>
+</code></pre></div>
+<h3 id="_6">附加选择</h3>
+<p>前置条件提到minikube还是比较吃CPU和内存的，如果资源不足最好的办法是事先指定虚拟机环境的配置，减少本机资源的使用</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 设置CPU个数</span>
+minikube config <span class="nb">set</span> cpu <span class="m">2</span>
+
+<span class="c1"># 设置内存大小</span>
+minikube config <span class="nb">set</span> memory 16384MB
+
+<span class="c1"># 设置磁盘大小（默认是20G，但是对于正式的开发环境，镜像大小很容易超出限定大小，因为还不清楚是否有动态扩容机制，一劳永逸的方法是在创建虚拟机前调整到合适的空间大小）</span>
+minikube config <span class="nb">set</span> disk-size 50000MB
+</code></pre></div>
+<h2 id="_7">开始使用</h2>
+<p>配置完成后即可进行启动，执行<code>minikube start</code>即可启动虚拟机，完整的启动日志如下（事先拉取过镜像）：</p>
+<div class="highlight"><pre><span></span><code>&gt;minikube start
+* minikube v1.21.0 on Darwin <span class="m">10</span>.15.7
+  - <span class="nv">MINIKUBE_IN_STYLE</span><span class="o">=</span><span class="nb">false</span>
+* Using the hyperkit driver based on user configuration
+* Starting control plane node minikube <span class="k">in</span> cluster minikube
+* Creating hyperkit VM <span class="o">(</span><span class="nv">CPUs</span><span class="o">=</span><span class="m">2</span>, <span class="nv">Memory</span><span class="o">=</span>16384MB, <span class="nv">Disk</span><span class="o">=</span>50000MB<span class="o">)</span> ...
+* Found network options:
+  - <span class="nv">NO_PROXY</span><span class="o">=</span>localhost,127.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24,192.168.64.0/24
+  - <span class="nv">http_proxy</span><span class="o">=</span>http://159.75.114.229:10011
+  - <span class="nv">https_proxy</span><span class="o">=</span>http://159.75.114.229:10011
+<span class="c1"># 下面这个错误不重要，我自己的网关代理配置有问题</span>
+! This VM is having trouble accessing https://k8s.gcr.io
+* To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+* Preparing Kubernetes v1.20.7 on Docker <span class="m">20</span>.10.6 ...
+  - env <span class="nv">NO_PROXY</span><span class="o">=</span>localhost,127.0.0.1,10.96.0.0/12,192.168.99.0/24,192.168.39.0/24,192.168.64.0/24
+  - env <span class="nv">HTTP_PROXY</span><span class="o">=</span>http://159.75.114.229:10011
+  - env <span class="nv">HTTPS_PROXY</span><span class="o">=</span>http://159.75.114.229:10011
+  - Generating certificates and keys ...
+  - Booting up control plane ...
+  - Configuring RBAC rules ...
+* Verifying Kubernetes components...
+  - Using image gcr.io/k8s-minikube/storage-provisioner:v5
+* Enabled addons: storage-provisioner, default-storageclass
+* Done! kubectl is now configured to use <span class="s2">&quot;minikube&quot;</span> cluster and <span class="s2">&quot;default&quot;</span> namespace by default
+</code></pre></div>
+<p>检查nodes状态</p>
+<div class="highlight"><pre><span></span><code>kubectl get nodes
+
+<span class="c1"># 示例输出</span>
+NAME       STATUS   ROLES                  AGE     VERSION
+minikube   Ready    control-plane,master   3m54s   v1.20.7
+</code></pre></div>
+<p>检查pods状态</p>
+<div class="highlight"><pre><span></span><code>kubectl get pods -A
+
+<span class="c1"># 示例输出</span>
+NAMESPACE     NAME                               READY   STATUS    RESTARTS   AGE
+kube-system   coredns-74ff55c5b-wjlph            <span class="m">1</span>/1     Running   <span class="m">0</span>          3m51s
+kube-system   etcd-minikube                      <span class="m">1</span>/1     Running   <span class="m">0</span>          4m5s
+kube-system   kube-apiserver-minikube            <span class="m">1</span>/1     Running   <span class="m">0</span>          4m5s
+kube-system   kube-controller-manager-minikube   <span class="m">1</span>/1     Running   <span class="m">0</span>          4m5s
+kube-system   kube-proxy-tlk6z                   <span class="m">1</span>/1     Running   <span class="m">0</span>          3m51s
+kube-system   kube-scheduler-minikube            <span class="m">1</span>/1     Running   <span class="m">0</span>          4m5s
+kube-system   storage-provisioner                <span class="m">1</span>/1     Running   <span class="m">1</span>          4m4s
+</code></pre></div>
+<p>打开dashboard</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 命令执行后会自动打开dashboard页面</span>
+minikube dashboard
+
+<span class="c1"># 如果只是需要链接而不是自动打开页面</span>
+minikube dashboard --url
+
+<span class="c1"># 示例输出</span>
+* Enabling dashboard ...
+  - Using image kubernetesui/dashboard:v2.1.0
+  - Using image kubernetesui/metrics-scraper:v1.0.4
+* Verifying dashboard health ...
+* Launching proxy ...
+* Verifying proxy health ...
+* Opening http://127.0.0.1:52999/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/ <span class="k">in</span> your default browser...
+</code></pre></div>
+<h2 id="_8">结语</h2>
+<p>因为日常都是在大型服务器集群上工作，对k8s的也有了很深刻的了解，自己也用树莓派搭建过mini的k8s集群，但是真正的在自己的设备上以开发、学习为目的安装k8s环境还是第一次，挺新鲜有趣的，况且居然还不用使用完整的Docker功能，仅仅需要hyperkit就可以了，这简直就是我的幸运</p>
+<p>不过缺点倒也是挺明显的，minikube运行起来后还是比较占用CPU和内存的，不适合长久的开启，否则电池会变的很不耐用，在需要使用的时候再开启，或者转向其他方案应该才是最终解</p>
+                
+                  
+                    
+
+<hr>
+<div class="md-source-date">
+  <small>
+    
+      最后更新: <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date">July 6, 2021</span>
+      
+    
+  </small>
+</div>
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="上一页: Index" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              Index
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../../Raspberry/" class="md-footer__link md-footer__link--next" aria-label="下一页: Index" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              Index
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright &copy; 2020 - 2021 liyangxia.com
+          </div>
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/liyangxia" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/liyangxia" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://docker.com/liyangxia" target="_blank" rel="noopener" title="docker.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path d="M349.9 236.3h-66.1v-59.4h66.1v59.4zm0-204.3h-66.1v60.7h66.1V32zm78.2 144.8H362v59.4h66.1v-59.4zm-156.3-72.1h-66.1v60.1h66.1v-60.1zm78.1 0h-66.1v60.1h66.1v-60.1zm276.8 100c-14.4-9.7-47.6-13.2-73.1-8.4-3.3-24-16.7-44.9-41.1-63.7l-14-9.3-9.3 14c-18.4 27.8-23.4 73.6-3.7 103.8-8.7 4.7-25.8 11.1-48.4 10.7H2.4c-8.7 50.8 5.8 116.8 44 162.1 37.1 43.9 92.7 66.2 165.4 66.2 157.4 0 273.9-72.5 328.4-204.2 21.4.4 67.6.1 91.3-45.2 1.5-2.5 6.6-13.2 8.5-17.1l-13.3-8.9zm-511.1-27.9h-66v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm78.1 0h-66.1v59.4h66.1v-59.4zm-78.1-72.1h-66.1v60.1h66.1v-60.1z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "toc.integrate", "search.highlight", "header.autohide"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.82b56eb2.min.js"></script>
+      
+    
+  </body>
+</html>

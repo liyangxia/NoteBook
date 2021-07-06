@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://liyangxia.com/</loc>
+         <lastmod>2021-07-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://liyangxia.com/Kubernetes/</loc>
+         <lastmod>2021-07-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://liyangxia.com/Kubernetes/macOS-install-minikube/</loc>
+         <lastmod>2021-07-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://liyangxia.com/Raspberry/</loc>
+         <lastmod>2021-07-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://liyangxia.com/Raspberry/pi-k3s/</loc>
+         <lastmod>2021-07-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+</urlset>
